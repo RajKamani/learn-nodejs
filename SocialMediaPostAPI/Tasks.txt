@@ -1,0 +1,10 @@
+1 - User Created                     ---------DONE----------
+2 - Simple Login                     ---------DONE----------
+3 - JWT Login Auth Middlerware       -------------DONE-------------
+4 - Post Model, Controller, Routes CRUD and Individual Post By ID. -----CRUD---DONE----------
+    4.1 - Add Image of Post also And Comments too. -------DONE---------
+5 - Validate Incoming Req.
+6 - See can we Improve Further 
+
+
+    

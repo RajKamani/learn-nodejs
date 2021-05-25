@@ -1,0 +1,18 @@
+<%- include("partials/header")%>
+
+    <h1>Home page</h1>
+    <p>
+        <%= homecontent %>
+    </p>
+    <div class="">
+        <% postsArray.forEach(function(post){ %>
+            <h1>
+                <%= post.title.substring(0,100) %>
+            </h1>
+            <p>
+                <%= post.content.substring(0,100) + " ..." %><a href="/post/<%= post._id %>">
+                        Read more</a>
+            </p>
+            <% }); %>
+    </div>
+<%- include("partials/footer")%>
