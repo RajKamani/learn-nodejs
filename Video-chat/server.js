@@ -30,6 +30,11 @@ io.on("connection", (socket) => {
     socket.on("disconnect", () => {
       socket.broadcast.to(roomId).emit("user-dis", userId);
     });
+
+    socket.on("CC", (CC) => {
+      console.log(CC);
+      socket.broadcast.to(roomId).emit("subtitle", CC);
+    });
   });
 });
 

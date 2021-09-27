@@ -106,6 +106,7 @@ const vidBtn = document.getElementById("VidControl");
 vidBtn.addEventListener("click", () => {
   playStop();
 });
+
 const playStop = () => {
   let enabled = myVideoStream.getVideoTracks()[0].enabled;
   if (enabled) {
@@ -154,3 +155,55 @@ function addmsg(msg, userid = peer.id) {
   lable.innerHTML = msg + " -- " + name;
   container.append(lable);
 }
+
+var SpeechRecognition = window.webkitSpeechRecognition;
+
+var recognition = new SpeechRecognition();
+
+let saveHandle;
+
+var Textbox = $("#textarea");
+var Content = "";
+
+recognition.continuous = true;
+recognition.lang = "en-US";
+
+recognition.start();
+
+recognition.onresult = async function (event) {
+  var current = event.resultIndex;
+
+  var transcript = await event.results[current][0].transcript;
+  socket.emit("CC", transcript);
+  Content += transcript;
+
+  //console.log(Content);
+};
+recognition.onend = function () {
+  console.log("Speech recognition service disconnected");
+  recognition.start();
+};
+Textbox.on("input", function () {
+  Content = $(this).val();
+});
+
+// Controls of CC
+let ccEnable = false;
+const ccbtn = document.getElementById("CC");
+ccbtn.addEventListener("click", () => {
+  if (ccEnable) {
+    ccbtn.innerHTML = "CC Disabled";
+  } else {
+    ccbtn.innerHTML = "CC Enabled";
+  }
+  ccEnable = !ccEnable;
+});
+
+socket.on("subtitle", (CC) => {
+  if (ccEnable) {
+    Textbox.val(CC);
+    console.log("CC shoud display.", CC);
+  } else {
+    Textbox.val("Enable CC First");
+  }
+});

@@ -11,7 +11,6 @@
     defer
   ></script>
   <script src="/socket.io/socket.io.js" defer></script>
-  <script src="script.js" defer></script>
 
   <script>
     const ROOM = "<%= roomId %>";
@@ -41,11 +40,22 @@
       <p id="lable"></p>
       <button id="control">Mute</button>
       <button id="VidControl">Stop Video</button>
+      <button id="CC">CC Disabled</button>
     </div>
     <div class="msgdiv">
       <input type="text" id="msg" placeholder="enter msg" />
       <input type="button" value="Send" id="submit" />
       <div id="allmsg"></div>
     </div>
+    <div class="container" style="margin: 20px">
+      <textarea
+        class="form-control"
+        id="textarea"
+        cols="30"
+        rows="10"
+      ></textarea>
+    </div>
   </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="script.js" defer></script>
 </html>
